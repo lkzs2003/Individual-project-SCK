@@ -20,38 +20,24 @@ sync_arith_unit_29 #(.M(M)) UUT (
 );
 
 initial begin
-    // Initialization
-    $dumpfile("waveform.vcd");
-    $dumpvars(0, sync_arith_unit_29_tb);
+    // initialization
     clk = 0;
-    i_reset = 1;
+    i_reset = 0;
     iarg_A = 0;
     iarg_B = 0;
     iop = 0;
 
     // Reset
     #10;
+    i_reset = 1;
+    #10;
     i_reset = 0;
     #10;
     i_reset = 1;
-    #10;
 
-    // Example Test Cases
-    // Test Case 1
-    iarg_A = 15; iarg_B = 3; iop = 4'b0000; // Example operation
-    #10;
-    
-    // Test Case 2
-    // Set different values for iarg_A, iarg_B, and iop
-    // #10;
-
-    // Additional test cases...
-
-    #100; // Wait for some time to observe the results
-    $finish; // Finish simulation
 end
 
-// Generating a clock signal
+// generating a clock signal
 always #5 clk = ~clk;
 
 endmodule
