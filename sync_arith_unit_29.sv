@@ -45,9 +45,14 @@ always @(posedge clk or negedge i_reset) begin
                     o_result <= iarg_A / ~iarg_B;
                 end
             end
-            4'b0011: begin // Operation ZM(A) => U2(A) (Code Conversion)
-                // Example implementation, specific logic depends on ZM code specification
-                o_result <= iarg_A; // Example conversion
+            4'b0011: begin // Operation ZM(A) => U2(A)
+                if (iarg_A[M-1] == 1'b0) begin 
+                    o_result <= iarg_A[M-2:0]; 
+                end else begin /
+                    o_result <= ~iarg_A[M-2:0] + 1'b1; 
+                end
+            end
+
             end
             default: begin
                 o_status[ERROR] <= 1'b1; // Unknown operation
