@@ -1,5 +1,4 @@
-`timescale 1ns / 1ps
-
+// Module sync_arith_unit_29: A Synchronous Arithmetic and Logic Unit
 module sync_arith_unit_29 #(parameter M = 32) (
     input wire [M-1:0] iarg_A,    // Input argument A, M-bit wide
     input wire [M-1:0] iarg_B,    // Input argument B, M-bit wide
@@ -41,15 +40,13 @@ always @(posedge clk or negedge i_reset) begin
             4'b0010: begin // Operation A/B (Division)
                 if (iarg_B == 0) begin
                     o_status[ERROR] <= 1'b1;
-                    o_result <= {M{1'bx}}; // Undefined value
+                    o_result <= {M{1'bx}};
                 end else begin
-                    int signed_dividend = $signed(iarg_A);
-                    int signed_divisor = $signed(iarg_B);
-                    int signed_result = signed_dividend / signed_divisor;
-                    o_result <= signed_result;
+                    o_result <= $signed(iarg_A) / $signed(iarg_B);
                 end
             end
             4'b0011: begin // Operation ZM(A) => U2(A) (Code Conversion)
+                // Assuming the MSB of iarg_A is the sign bit
                 if (iarg_A[M-1] == 1'b0) begin // Positive number
                     o_result <= iarg_A;
                 end else begin // Negative number

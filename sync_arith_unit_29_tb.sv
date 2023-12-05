@@ -1,3 +1,5 @@
+`include "sync_arith_unit_29.sv"
+
 `timescale 1ns / 1ps
 
 module sync_arith_unit_29_tb;
@@ -36,14 +38,22 @@ initial begin
     i_reset = 1;
     #10;
 
-    // Test Case 1
-    iarg_A = 15; iarg_B = 3; iop = 4'b0000; // Example operation
-    #10;
+    // Test Cases
+    // Test Case 1: Bitwise Right Shift
+    iarg_A = 15; iarg_B = 3; iop = 4'b0000;
+    #20;
 
-    // Test Case 2: Test another operation
-    #20; // Short delay
-    iarg_A = 10; iarg_B = 5; iop = 4'b0001; // Another operation
-    #10;
+    // Test Case 2: Check if A <= ~B
+    iarg_A = 10; iarg_B = 5; iop = 4'b0001;
+    #20;
+
+    // Test Case 3: Division A / ~B
+    iarg_A = 20; iarg_B = 4; iop = 4'b0010;
+    #20;
+
+    // Test Case 4: Conversion ZM(A) => U2(A)
+    iarg_A = 8'b10000001; iop = 4'b0011;
+    #20;
 
     #100; // Wait for some time to observe the results
     $finish; // Finish simulation
@@ -51,5 +61,11 @@ end
 
 // Generating a clock signal
 always #5 clk = ~clk;
+
+// Monitor values
+initial begin
+    $monitor("Time = %t, iarg_A = %d, iarg_B = %d, iop = %b, o_result = %d, o_status = %b",
+             $time, iarg_A, iarg_B, iop, o_result, o_status);
+end
 
 endmodule
