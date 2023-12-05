@@ -36,11 +36,14 @@ initial begin
     i_reset = 1;
     #10;
 
-    // Example Test Cases
     // Test Case 1
     iarg_A = 15; iarg_B = 3; iop = 4'b0000; // Example operation
     #10;
 
+    // Test Case 2: Test another operation
+    #20; // Short delay
+    iarg_A = 10; iarg_B = 5; iop = 4'b0001; // Another operation
+    #10;
 
     #100; // Wait for some time to observe the results
     $finish; // Finish simulation
