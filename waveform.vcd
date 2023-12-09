@@ -1,5 +1,5 @@
 $date
-	Tue Dec  5 21:41:38 2023
+	Sat Dec  9 12:49:10 2023
 $end
 $version
 	Icarus Verilog
@@ -22,29 +22,60 @@ $var wire 1 % i_reset $end
 $var wire 32 ) iarg_A [31:0] $end
 $var wire 32 * iarg_B [31:0] $end
 $var wire 4 + iop [3:0] $end
-$var parameter 32 , ERROR $end
-$var parameter 32 - M $end
-$var parameter 32 . NOT_EVEN_1 $end
-$var parameter 32 / OVERFLOW $end
-$var parameter 32 0 ZEROS $end
-$var reg 32 1 o_result [31:0] $end
-$var reg 4 2 o_status [3:0] $end
+$var wire 32 , div_remainder [31:0] $end
+$var wire 32 - div_quotient [31:0] $end
+$var wire 1 . div_error $end
+$var parameter 32 / ERROR $end
+$var parameter 32 0 M $end
+$var parameter 32 1 NOT_EVEN_1 $end
+$var parameter 4 2 OP_BITWISE_SHIFT $end
+$var parameter 4 3 OP_COMPARE_AS $end
+$var parameter 4 4 OP_DIVIDE $end
+$var parameter 4 5 OP_ZM_TO_U2 $end
+$var parameter 32 6 OVERFLOW $end
+$var parameter 32 7 ZEROS $end
+$var reg 32 8 o_result [31:0] $end
+$var reg 4 9 o_status [3:0] $end
+$scope module div_unit $end
+$var wire 32 : dividend [31:0] $end
+$var wire 32 ; divisor [31:0] $end
+$var parameter 32 < M $end
+$var reg 1 . error $end
+$var reg 32 = quotient [31:0] $end
+$var reg 32 > remainder [31:0] $end
+$var reg 32 ? temp_dividend [31:0] $end
+$var integer 32 @ i [31:0] $end
+$upscope $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 $comment Show the parameter values. $end
 $dumpall
-b1 0
-b0 /
-b10 .
-b100000 -
-b11 ,
+b100000 <
+b1 7
+b0 6
+b11 5
+b10 4
+b1 3
+b0 2
+b10 1
+b100000 0
+b11 /
 b100000 #
 $end
 #0
 $dumpvars
-bx 2
-bx 1
+bx @
+b0 ?
+bx >
+bx =
+b0 ;
+b0 :
+bx 9
+bx 8
+1.
+bx -
+bx ,
 b0 +
 b0 *
 b0 )
@@ -58,9 +89,9 @@ bx !
 $end
 #5000
 b0 "
-b0 1
+b0 8
 b0 !
-b0 2
+b0 9
 1$
 #10000
 0$
@@ -73,11 +104,20 @@ b0 2
 #25000
 1$
 #30000
+b11111111111111111111111111111111 @
+0.
+b1111 ?
+b0 ,
+b0 >
+b101 -
+b101 =
 0$
 b11 '
 b11 *
+b11 ;
 b1111 &
 b1111 )
+b1111 :
 #35000
 1$
 #40000
@@ -85,46 +125,69 @@ b1111 )
 #45000
 1$
 #50000
+b0 ,
+b0 >
+b11111111111111111111111111111111 @
+b1010 ?
+b10 -
+b10 =
 0$
 b1 (
 b1 +
 b101 '
 b101 *
+b101 ;
 b1010 &
 b1010 )
+b1010 :
 #55000
-b11111111111111111111111111111111 "
-b11111111111111111111111111111111 1
+b1 "
+b1 8
 1$
 #60000
 0$
 #65000
 1$
 #70000
+b0 ,
+b0 >
+b11111111111111111111111111111111 @
+b10100 ?
+b101 -
+b101 =
 0$
 b10 (
 b10 +
 b100 '
 b100 *
+b100 ;
 b10100 &
 b10100 )
+b10100 :
 #75000
 b101 "
-b101 1
+b101 8
 1$
 #80000
 0$
 #85000
 1$
 #90000
+b1 ,
+b1 >
+b11111111111111111111111111111111 @
+b10000001 ?
+b100000 -
+b100000 =
 0$
 b11 (
 b11 +
 b10000001 &
 b10000001 )
+b10000001 :
 #95000
 b10000001 "
-b10000001 1
+b10000001 8
 1$
 #100000
 0$
