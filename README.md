@@ -47,14 +47,5 @@ Status operacji jest sygnalizowany przez bity w `o_status`:
 
 [Dodaj instrukcje uruchamiania modułu, w tym jak skompilować i uruchomić testy.]
 
-## Licencja
-
-[Informacje o licencji (jeśli dotyczy).]
-
 ## Autor
-
-[Dane autora projektu.]
-
----
-
-Ten szkic jest bazowy i może być modyfikowany oraz uzupełniany zależnie od specyfiki projektu i dodatkowych wymagań.
+Łukasz Siemionek
